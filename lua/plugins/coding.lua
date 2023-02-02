@@ -38,6 +38,7 @@ return {
   -- Surround
   {
     "kylechui/nvim-surround",
+    keys = { { 'ds' }, { 'cs' }, { 'ys' } },
     config = function()
         require("nvim-surround").setup()
     end
@@ -46,6 +47,7 @@ return {
   -- Batter split / join functionality
   {
     "AndrewRadev/splitjoin.vim",
+    keys = { { 'gJ' }, { 'gS' } },
     event = "BufReadPost",
   },
 

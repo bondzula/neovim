@@ -191,6 +191,7 @@ return {
   -- references
   {
     "echasnovski/mini.cursorword",
+    event = "CursorHold",
     opts = { 
       delay = 600
     },
@@ -237,7 +238,8 @@ return {
         ["<leader>r"] = { name = "+refactor" },
         ["<leader>f"] = { name = "+file/find" },
         ["<leader>g"] = { name = "+git" },
-        ["<leader>gh"] = { name = "+hunks" },
+        ["<leader>i"] = { name = "+issues" },
+        -- ["<leader>gp"] = { name = "+prs" },
         ["<leader>q"] = { name = "+quit/session" },
         ["<leader>s"] = { name = "+search" },
         ["<leader>sn"] = { name = "+noice" },

@@ -19,7 +19,7 @@ return {
       { "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
     },
   },
-  
+
   -- library used by other plugins
   {
     "nvim-lua/plenary.nvim",
@@ -35,33 +35,35 @@ return {
   -- Tmux integration
   {
     'numToStr/Navigator.nvim',
+    keys = {
+      { '<C-h>', '<cmd>NavigatorLeft<cr>' },
+      { '<C-l>', '<cmd>NavigatorRight<cr>' },
+      { '<C-k>', '<cmd>NavigatorUp<cr>' },
+      { '<C-j>', '<cmd>NavigatorDown<cr>' },
+    },
     config = function()
-      require('Navigator').setup()
-
-      vim.keymap.set({'n', 't'}, '<C-h>', '<cmd>NavigatorLeft<cr>')
-      vim.keymap.set({'n', 't'}, '<C-l>', '<cmd>NavigatorRight<cr>')
-      vim.keymap.set({'n', 't'}, '<C-k>', '<cmd>NavigatorUp<cr>')
-      vim.keymap.set({'n', 't'}, '<C-j>', '<cmd>NavigatorDown<cr>')
+      require('Navigator').setup({})
     end
   },
 
   -- Task runner
   {
     "stevearc/overseer.nvim",
+    keys = {
+      { '<leader>tt', '<cmd>OverseerToggle[!] right<cr>', desc = 'Toggle Task View' },
+      { '<leader>tr', '<cmd>OverseerRun<cr>', desc = 'Run a task' },
+      { '<leader>tR', '<cmd>OverseerRunCmd<cr>', desc = 'Run a custom task' },
+      { '<leader>ta', '<cmd>OverseerTaskAction<cr>', desc = 'Task Actions' },
+    },
     config = function()
       require('overseer').setup()
 
-      vim.keymap.set('n', '<leader>tt', '<cmd>OverseerToggle[!] right<cr>', { desc = 'Toggle Task View' })
-      vim.keymap.set('n', '<leader>tr', '<cmd>OverseerRun<cr>', { desc = 'Run a task' })
-      vim.keymap.set('n', '<leader>tR', '<cmd>OverseerRunCmd<cr>', { desc = 'Run a custom task' })
-      vim.keymap.set('n', '<leader>ta', '<cmd>OverseerTaskAction<cr>', { desc = 'Task Actions' })
-
-      -- TODO: move into a utlity file
+      -- TODO: move into a utility file
       require("overseer").register_template({
-        name = "Laravel Serve: 2",
+        name = "Laravel Artisan Serve",
         params = {},
         condition = {
-          callback = function(search)
+          callback = function()
             return not vim.tbl_isempty(vim.fs.find('artisan'))
           end,
         },
@@ -79,8 +81,9 @@ return {
   {
     "michaelb/sniprun",
     build = "bash install.sh",
+    cmd = 'Sniprun',
     config = function()
-      require'sniprun'.setup({
+      require('sniprun').setup({
         selected_interpreters={"JS_TS_deno"},
         repl_enable={"JS_TS_deno"}
       })
