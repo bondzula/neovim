@@ -34,6 +34,32 @@ return {
       { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
       { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
     },
+    opts = {
+      defaults = {
+        vimgrep_arguments = {
+          "rg",
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
+          "--trim" -- Don't show weird indented lines
+        }
+      },
+      pickers = {
+        find_files = {
+          -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+          find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+          theme = "dropdown",
+          winblend = 10,
+          width = 0.5,
+          prompt = " ",
+          results_height = 18,
+          previewer = false,
+        },
+      }
+    },
     config = function(_, opts)
       local telescope = require("telescope")
 
