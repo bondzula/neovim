@@ -1,5 +1,6 @@
 return {
   -- catppuccin
+  -- NOTE: When making changes on this file, run `CatppuccinCompile` to compile all those options
   {
     "catppuccin/nvim",
     lazy = true,
