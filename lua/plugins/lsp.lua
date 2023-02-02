@@ -73,38 +73,6 @@ return {
         },
       })
 
-      local null_ls = require("null-ls")
-
-      null_ls.setup({
-        sources = {
-          -- JavaScript
-          null_ls.builtins.diagnostics.eslint_d,
-          null_ls.builtins.code_actions.eslint_d,
-
-          null_ls.builtins.formatting.prettierd,
-
-          -- Check the spelling
-          null_ls.builtins.diagnostics.cspell,
-          null_ls.builtins.code_actions.cspell,
-
-          -- CSS
-          null_ls.builtins.formatting.stylua,
-          null_ls.builtins.diagnostics.stylua,
-
-          -- PHP
-          null_ls.builtins.diagnostics.phpstan,
-
-          -- Git commit
-          null_ls.builtins.diagnostics.commitlint,
-        },
-      })
-
-      require("mason-null-ls").setup({
-        ensure_installed = nil,
-        automatic_installation = true,
-        automatic_setup = false,
-      })
-
       -- TODO: autocmd for signature_help on CursorHoldI
       local on_attach = function(_, bufferNum)
         -- configure omnifunc
@@ -155,6 +123,47 @@ return {
         allow_incremental_sync = true,
         debounce_text_changes = 150,
       }
+
+      local null_ls = require("null-ls")
+
+      null_ls.setup({
+        on_attach = on_attach,
+        sources = {
+          -- JavaScript
+          null_ls.builtins.diagnostics.eslint_d,
+          null_ls.builtins.code_actions.eslint_d,
+
+          null_ls.builtins.formatting.prettierd,
+
+          -- Check the spelling
+          null_ls.builtins.diagnostics.cspell.with({
+            diagnostic_config = {
+              underline = true,
+              virtual_text = false,
+              signs = true,
+              update_in_insert = false,
+              severity_sort = true,
+            },
+          }),
+          null_ls.builtins.code_actions.cspell,
+
+          -- CSS
+          null_ls.builtins.formatting.stylua,
+          null_ls.builtins.diagnostics.stylua,
+
+          -- PHP
+          null_ls.builtins.diagnostics.phpstan,
+
+          -- Git commit
+          null_ls.builtins.diagnostics.commitlint,
+        },
+      })
+
+      require("mason-null-ls").setup({
+        ensure_installed = nil,
+        automatic_installation = true,
+        automatic_setup = false,
+      })
 
       vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         virtual_text = false,
