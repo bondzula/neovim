@@ -1,4 +1,4 @@
-local Util = require('config.util')
+local Util = require("config.util")
 
 -- better up/down
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
