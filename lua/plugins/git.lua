@@ -112,4 +112,40 @@ return {
 			require("diffview").setup(opts)
 		end,
 	},
+
+	{
+		"TimUntersberger/neogit",
+		cmd = "Neogit",
+		keys = {
+			{ "<leader>gg", "<cmd>Neogit<cr>", desc = "Open Neogit" },
+		},
+		opts = {
+			disable_hint = true,
+			disable_commit_confirmation = true,
+			-- Change the default way of opening neogit
+			kind = "replace",
+			-- Change the default way of opening the commit popup
+			commit_popup = {
+				kind = "split",
+			},
+
+			-- Change the default way of opening popups
+			popup = {
+				kind = "split",
+			},
+			-- customize displayed signs
+			signs = {
+				-- { CLOSED, OPENED }
+				section = { ">", "v" },
+				item = { ">", "v" },
+				hunk = { "", "" },
+			},
+			integrations = {
+				diffview = true,
+			},
+		},
+		config = function(_, opts)
+			require("neogit").setup(opts)
+		end,
+	},
 }
