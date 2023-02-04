@@ -324,9 +324,9 @@ return {
 	-- Figoure out where does this belong to?
 	{
 		"ggandor/leap.nvim",
-		config = function()
-			require("leap").add_default_mappings()
-		end,
+    keys = {
+      { '<leader>j', function() require("leap").leap({})  end, desc = "Leap" },
+    },
 	},
 
 	-- TODO: Remove move this to another file
