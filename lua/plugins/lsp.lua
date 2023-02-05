@@ -279,6 +279,9 @@ return {
 
       -- LanguageTool spell checking
       lspconfig.ltex.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        flags = lsp_flags,
         filetypes = {
           "bib",
           "gitcommit",
