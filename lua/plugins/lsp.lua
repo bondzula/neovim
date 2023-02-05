@@ -74,6 +74,13 @@ return {
           { buffer = bufferNum, desc = "Go to Implementation" }
         )
 
+        vim.keymap.set(
+          "n",
+          "<leader>cf",
+          vim.lsp.buf.format,
+          { buffer = bufferNum, desc = "Format Document" }
+        )
+
         -- Rename
         vim.keymap.set("n", "gr", "<cmd>Lspsaga rename<cr>", { buffer = bufferNum, desc = "Rename" })
         vim.keymap.set(
@@ -121,7 +128,7 @@ return {
         )
         vim.keymap.set(
           "n",
-          "<leader>cf",
+          "<leader>cF",
           "<cmd>Lspsaga lsp_finder<CR>",
           { buffer = bufferNum, desc = "LSP Finder" }
         )
