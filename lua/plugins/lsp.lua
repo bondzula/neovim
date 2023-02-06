@@ -9,10 +9,17 @@ local servers = {
 
 return {
   {
+    "folke/neodev.nvim",
+    config = function()
+      require("neodev").setup()
+    end
+  },
+
+  {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
     dependencies = {
-      { "folke/neodev.nvim", config = true },
+      { "folke/neodev.nvim" },
     },
     config = function()
       local lspconfig = require("lspconfig")
@@ -51,12 +58,8 @@ return {
             diagnostics = {
               globals = { "vim", "print", "require" },
             },
-            -- Use stylua instead
             format = {
               enable = true,
-              -- Put format options here
-
-              -- NOTE: the value should be STRING!!
               defaultConfig = {
                 indent_style = "space",
                 indent_size = "2",
