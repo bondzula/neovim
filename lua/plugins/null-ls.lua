@@ -13,6 +13,10 @@ return {
       -- Get the dictionary
       local spellingConfig = { extra_args = { "--config", vim.fn.expand("~/.config/nvim/cspell.json") } }
 
+      local ltrsSettings = {
+        filetypes = { "latex", "tex", "bib", "markdown", "gitcommit", "text", "NeogitCommitMessage", "octo" },
+      }
+
       null_ls.setup({
         on_attach = on_attach,
         capabilities = capabilities,
@@ -37,6 +41,10 @@ return {
 
           -- PHP
           null_ls.builtins.diagnostics.phpstan,
+
+          -- Grammar checker
+          null_ls.builtins.diagnostics.ltrs.with(ltrsSettings),
+          null_ls.builtins.code_actions.ltrs.with(ltrsSettings),
         },
       })
     end
