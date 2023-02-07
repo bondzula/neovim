@@ -101,6 +101,9 @@ return {
       { "akinsho/toggleterm.nvim" },
       { "nvim-lua/plenary.nvim" },
     },
+    keys = {
+      { "<leader>fl", "<cmd>Lf<cr>", desc = "LF File Manager" },
+    },
     opts = {
       default_cmd = "lf", -- default `lf` command
       default_action = "edit", -- default action when `Lf` opens a file
@@ -123,8 +126,8 @@ return {
       mappings = true, -- whether terminal buffer mapping is enabled
       tmux = false, -- tmux statusline can be disabled on opening of Lf
     },
-    config = function (_, opts)
-      require('lf').setup(opts)
+    config = function(_, opts)
+      require("lf").setup(opts)
     end
   },
 
