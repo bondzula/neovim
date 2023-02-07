@@ -4,37 +4,24 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-buffer" },
+      { "hrsh7th/cmp-cmdline" },
+      { "hrsh7th/cmp-nvim-lua" },
+      { "hrsh7th/cmp-nvim-lsp" },
+      { "hrsh7th/cmp-nvim-lsp-signature-help" },
       { "hrsh7th/cmp-path" },
 
-      { "saadparwaiz1/cmp_luasnip" },
-      { "f3fora/cmp-spell" },
-      { "ray-x/cmp-treesitter" },
-
       { "L3MON4D3/LuaSnip" },
+      { "saadparwaiz1/cmp_luasnip" },
       { "rafamadriz/friendly-snippets" },
       { "onsails/lspkind-nvim" },
-      {
-        "KadoBOT/cmp-plugins",
-        config = function()
-          require("cmp-plugins").setup({
-            files = { "plugins.lua" }, -- Recommended: use static filenames or partial paths
-          })
-        end,
-      },
+      { "petertriho/cmp-git" },
     },
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
-      local lspkind = require("lspkind")
-      lspkind.init()
 
-      local has_words_before = function()
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0
-            and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-      end
+      require("cmp_git").setup()
 
       cmp.setup({
         snippet = {
@@ -43,78 +30,77 @@ return {
           end,
         },
         mapping = {
-          ["<C-f>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-d>"] = cmp.mapping.scroll_docs(4),
-          ["<C-n>"] = cmp.mapping(function(fallback)
-            if luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-              fallback()
-            end
-          end, { "i", "s" }),
-          ["<C-p>"] = cmp.mapping(function(fallback)
-            if luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-          ["<c-a>"] = cmp.mapping.complete(),
-          ["<C-e>"] = cmp.mapping.abort(),
+          ["<C-p>"] = cmp.mapping.select_prev_item(),
+          ["<C-n>"] = cmp.mapping.select_next_item(),
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-e>"] = cmp.mapping.close(),
           ["<CR>"] = cmp.mapping.confirm({
-            select = true,
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = true
           }),
+
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
-            elseif has_words_before() then
-              cmp.complete()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
             else
               fallback()
             end
           end, { "i", "s" }),
+
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
             else
+
               fallback()
             end
           end, { "i", "s" }),
         },
-        autocomplete = false,
         formatting = {
-          format = lspkind.cmp_format({
-            with_text = true,
-            menu = {
-              otter = "[🦦]",
-              luasnip = "[snip]",
-              nvim_lsp = "[LSP]",
-              buffer = "[buf]",
-              path = "[path]",
-              spell = "[spell]",
-              tags = "[tag]",
-              treesitter = "[TS]",
-            },
-          }),
+          format = require("lspkind").cmp_format(),
         },
         sources = {
-          { name = "otter" },
-          { name = "path" },
-          { name = "plugins" },
           { name = "nvim_lsp" },
-          { name = "luasnip", keyword_length = 3, max_item_count = 3 },
-          { name = "buffer", keyword_length = 5, max_item_count = 3 },
-          { name = "spell" },
-          { name = "treesitter", keyword_length = 5, max_item_count = 3 },
+          { name = "nvim_lsp_signature_help" },
+          { name = "git" },
+          { name = "path" },
+          { name = "buffer" },
+          { name = "luasnip" },
+          { name = "nvim_lua" },
         },
         view = {
           entries = "native",
         },
         window = {
-          documentation = {
-            -- border = require 'misc.style'.border,
-          },
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered()
         },
       })
+
+      cmp.setup.cmdline({ "/", "?" }, {
+        mapping = cmp.mapping.preset.cmdline(), -- Tab for selection (arrows needed for selecting past items)
+        sources = { { name = "buffer" } },
+        view = {
+          entries = "custom",
+        },
+      })
+
+      cmp.setup.cmdline({ ":" }, {
+        mapping = cmp.mapping.preset.cmdline(), -- Tab for selection (arrows needed for selecting past items)
+        sources = {
+          { name = "cmdline" },
+          { name = "path" }
+        },
+        view = {
+          entries = "custom",
+        },
+      })
+
       -- for friendly snippets
       require("luasnip.loaders.from_vscode").lazy_load()
       -- for custom snippets
