@@ -7,44 +7,26 @@ return {
 
       gs.setup({
         on_attach = function(bufNum)
+          local map = vim.keymap.set
           -- Navigation
-          vim.keymap.set("n", "]c", gs.next_hunk, { desc = "Next Hunk", buffer = bufNum })
-          vim.keymap.set("n", "[c", gs.prev_hunk, { desc = "Previous Hunk", buffer = bufNum })
+          map("n", "]c", gs.next_hunk, { desc = "Next Hunk", buffer = bufNum })
+          map("n", "[c", gs.prev_hunk, { desc = "Previous Hunk", buffer = bufNum })
 
           -- Actions
-          vim.keymap.set("n", "<leader>gs", gs.stage_hunk, { desc = "Stage Hunk", buffer = bufNum })
-          vim.keymap.set("n", "<leader>gr", gs.reset_hunk, { desc = "Reset Hunk", buffer = bufNum })
-          vim.keymap.set("n", "<leader>gS", gs.stage_buffer, { desc = "Stage Buffer", buffer = bufNum })
-          vim.keymap.set(
-            "n",
-            "<leader>gu",
-            gs.undo_stage_hunk,
-            { desc = "Reset Staged Hunk", buffer = bufNum }
-          )
-          vim.keymap.set(
-            "n",
-            "<leader>gR",
-            gs.reset_buffer,
-            { desc = "Reset Staged Buffer", buffer = bufNum }
-          )
-          vim.keymap.set("n", "<leader>gk", gs.preview_hunk, { desc = "Preview Hunk", buffer = bufNum })
-          vim.keymap.set(
-            "n",
-            "<leader>gb",
-            gs.toggle_current_line_blame,
-            { desc = "Toggle line blame", buffer = bufNum }
-          )
+          map("n", "<leader>gs", gs.stage_hunk, { desc = "Stage Hunk", buffer = bufNum })
+          map("n", "<leader>gr", gs.reset_hunk, { desc = "Reset Hunk", buffer = bufNum })
+          map("n", "<leader>gS", gs.stage_buffer, { desc = "Stage Buffer", buffer = bufNum })
+          map("n", "<leader>gu", gs.undo_stage_hunk, { desc = "Reset Staged Hunk", buffer = bufNum })
+          map("n", "<leader>gR", gs.reset_buffer, { desc = "Reset Staged Buffer", buffer = bufNum })
+          map("n", "<leader>gk", gs.preview_hunk, { desc = "Preview Hunk", buffer = bufNum })
+          map("n", "<leader>gb", gs.toggle_current_line_blame, { desc = "Toggle line blame", buffer = bufNum })
 
           -- Text object
-          vim.keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+          map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
 
           -- Visual mode staging
-          vim.keymap.set("v", "<leader>gs", function()
-            gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-          end)
-          vim.keymap.set("v", "<leader>gr", function()
-            gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-          end)
+          map("v", "<leader>gs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
+          map("v", "<leader>gr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
         end,
       })
     end,
@@ -136,8 +118,8 @@ return {
       -- customize displayed signs
       signs = {
         -- { CLOSED, OPENED }
-        section = { ">", "v" },
-        item = { ">", "v" },
+        section = { "", "" },
+        item = { "", "" },
         hunk = { "", "" },
       },
       integrations = {
