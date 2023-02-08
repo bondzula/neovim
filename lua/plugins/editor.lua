@@ -54,7 +54,7 @@ return {
           theme = "dropdown",
           winblend = 10,
           width = 0.5,
-          prompt = " ",
+          prompt = " ",
           results_height = 18,
           previewer = false,
         },
