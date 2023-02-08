@@ -21,8 +21,6 @@ return {
       local cmp = require("cmp")
       local luasnip = require("luasnip")
 
-      require("cmp_git").setup()
-
       cmp.setup({
         snippet = {
           expand = function(args)
@@ -32,7 +30,7 @@ return {
         mapping = {
           ["<C-p>"] = cmp.mapping.select_prev_item(),
           ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-b>"] = cmp.mapping.scroll_docs( -4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-e>"] = cmp.mapping.close(),
           ["<CR>"] = cmp.mapping.confirm({
@@ -53,10 +51,9 @@ return {
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
+            elseif luasnip.jumpable( -1) then
+              luasnip.jump( -1)
             else
-
               fallback()
             end
           end, { "i", "s" }),
@@ -106,5 +103,17 @@ return {
       -- for custom snippets
       require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/nvim/snips" } })
     end,
+  },
+
+  {
+    "petertriho/cmp-git",
+    dependencies = {
+      { "nvim-lua/plenary.nvim" }
+    },
+    config = function()
+      require("cmp_git").setup({
+        filetypes = { "gitcommit", "octo", "NeogitCommitMessage" },
+      })
+    end
   },
 }
