@@ -156,7 +156,7 @@ return {
     config = function(_, opts)
       require("nvim-autopairs").setup(opts)
 
-      -- Setup autopairs to work with cmp if its present
+      -- Setup auto-pairs to work with cmp if its present
       local cmp_loaded, cmp = pcall(require, "cmp")
 
       if cmp_loaded then
@@ -321,12 +321,47 @@ return {
     },
   },
 
-  -- Figoure out where does this belong to?
+  -- Figure out where does this belong to?
   {
     "ggandor/leap.nvim",
     keys = {
       { "<leader>j", function() require("leap").leap({}) end, desc = "Leap" },
     },
+  },
+
+  {
+    "bennypowers/nvim-regexplainer",
+    dependencies = {
+      { "nvim-treesitter/nvim-treesitter" },
+      { "MunifTanjim/nui.nvim" },
+    },
+    opts = {
+      mode = "narrative",
+      auto = false,
+      filetypes = {
+        "html",
+        "js",
+        "cjs",
+        "mjs",
+        "ts",
+        "jsx",
+        "tsx",
+        "cjsx",
+        "mjsx",
+        "vue"
+      },
+      debug = false,
+      display = "popup",
+      mappings = {
+        toggle = "<leader>ce",
+      },
+      narrative = {
+        separator = "\n",
+      },
+    },
+    config = function(_, opts)
+      require "regexplainer".setup(opts)
+    end,
   },
 
   {
