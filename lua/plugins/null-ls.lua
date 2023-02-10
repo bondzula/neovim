@@ -54,6 +54,12 @@ return {
 
           -- PHP
           null_ls.builtins.diagnostics.phpstan,
+
+          -- Nix
+          null_ls.builtins.formatting.nixfmt, -- Opinionated formatter
+          null_ls.builtins.diagnostics.deadnix,
+          null_ls.builtins.diagnostics.statix,
+          null_ls.builtins.code_actions.statix,
         },
       })
     end
