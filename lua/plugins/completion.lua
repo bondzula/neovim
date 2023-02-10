@@ -108,7 +108,7 @@ return {
 
   {
     "petertriho/cmp-git",
-    event = "InsertEnter",
+    ft = { "gitcommit", "octo", "NeogitCommitMessage" },
     dependencies = {
       { "nvim-lua/plenary.nvim" }
     },
