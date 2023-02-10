@@ -46,6 +46,17 @@ return {
     end,
   },
 
+  -- Generate the docs
+  {
+    "danymat/neogen",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    cmd = { "Neogen" },
+    keys = {
+      { "<leader>cg", function() require('neogen').generate() end, desc = "Generate Docs" },
+    },
+    config = true,
+  },
+
   -- Batter split / join functionality
   {
     "AndrewRadev/splitjoin.vim",
