@@ -378,21 +378,4 @@ return {
       })
     end,
   },
-
-  -- TODO: Remove move this to another file
-  -- Urlview
-  {
-    "axieax/urlview.nvim",
-    keys = {
-      { "<leader>ub", "<cmd>UrlView<cr>", desc = "Open URL view for the current buffer" },
-      { "<leader>ul", "<cmd>UrlView lazy<cr>", desc = "Open URL view for the neovim plugins" },
-    },
-    opts = {
-      -- Options: "native" (vim.ui.select) or "telescope"
-      default_picker = "telescope",
-    },
-    config = function(_, opts)
-      require("urlview").setup(opts)
-    end,
-  },
 }
