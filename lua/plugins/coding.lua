@@ -1,8 +1,8 @@
 return {
-
   -- Commenting plugin
   {
     "numToStr/Comment.nvim",
+    keys = { { "gc" }, { "gb" } },
     dependencies = {
       "JoosepAlviste/nvim-ts-context-commentstring",
     },
@@ -13,10 +13,12 @@ return {
           local U = require("Comment.utils")
 
           -- Determine whether to use linewise or blockwise commentstring
+          ---@diagnostic disable-next-line: undefined-field
           local type = ctx.ctype == U.ctype.line and "__default" or "__multiline"
 
           -- Determine the location where to calculate commentstring from
           local location = nil
+          ---@diagnostic disable-next-line: undefined-field
           if ctx.ctype == U.ctype.block then
             location = require("ts_context_commentstring.utils").get_cursor_location()
           elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
@@ -24,9 +26,9 @@ return {
           end
 
           return require("ts_context_commentstring.internal").calculate_commentstring({
-            key = type,
-            location = location,
-          })
+              key = type,
+              location = location,
+            })
         end
       end,
     },
@@ -51,6 +53,7 @@ return {
     event = "BufReadPost",
   },
 
+  -- Refactoring helpers
   {
     "ThePrimeagen/refactoring.nvim",
     dependencies = {
@@ -59,36 +62,12 @@ return {
     },
     keys = {
       -- Remaps for the refactoring operations currently offered by the plugin
-      {
-        "<leader>re",
-        "<cmd>lua require('refactoring').refactor('Extract Function')<cr>",
-        mode = "v",
-        desc = "Extract Function",
-      },
-      {
-        "<leader>rE",
-        "<cmd>lua require('refactoring').refactor('Extract Function To File')<cr>",
-        mode = "v",
-        desc = "Extract Function to File",
-      },
-      {
-        "<leader>rv",
-        "<cmd>lua require('refactoring').refactor('Extract Variable')<cr>",
-        mode = "v",
-        desc = "Extract Variable",
-      },
-      {
-        "<leader>ri",
-        "<cmd>lua require('refactoring').refactor('Inline Variable')<cr>",
-        mode = "v",
-        desc = "Inline Variable",
-      },
-      { "<leader>rb", "<cmd>lua require('refactoring').refactor('Extract Block')<cr>", desc = "Extract Block" },
-      {
-        "<leader>rB",
-        "<cmd>lua require('refactoring').refactor('Extract Block To File')<cr>",
-        desc = "Extract Block To File",
-      },
+      { "<leader>re", "<cmd>lua require('refactoring').refactor('Extract Function')<cr>",         mode = "v",                    desc = "Extract Function" },
+      { "<leader>rE", "<cmd>lua require('refactoring').refactor('Extract Function To File')<cr>", mode = "v",                    desc = "Extract Function to File" },
+      { "<leader>rv", "<cmd>lua require('refactoring').refactor('Extract Variable')<cr>",         mode = "v",                    desc = "Extract Variable" },
+      { "<leader>ri", "<cmd>lua require('refactoring').refactor('Inline Variable')<cr>",          mode = "v",                    desc = "Inline Variable" },
+      { "<leader>rb", "<cmd>lua require('refactoring').refactor('Extract Block')<cr>",            desc = "Extract Block" },
+      { "<leader>rB", "<cmd>lua require('refactoring').refactor('Extract Block To File')<cr>",    desc = "Extract Block To File" },
     },
     config = function()
       require("refactoring").setup({})

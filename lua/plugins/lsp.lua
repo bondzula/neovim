@@ -30,6 +30,7 @@ return {
 
   {
     "folke/neodev.nvim",
+    ft = { "lua" },
     config = function()
       require("neodev").setup()
     end
@@ -86,6 +87,7 @@ return {
 
   {
     "williamboman/mason.nvim",
+    cmd = "Mason",
     dependencies = {
       { "neovim/nvim-lspconfig" },
     },
@@ -128,7 +130,6 @@ return {
     },
     config = function(_, opts)
       require("lspsaga").setup(opts)
-
     end
   },
 }

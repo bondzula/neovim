@@ -3,6 +3,7 @@ return {
   -- completion
   {
     "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
     dependencies = {
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-cmdline" },
@@ -107,6 +108,7 @@ return {
 
   {
     "petertriho/cmp-git",
+    event = "InsertEnter",
     dependencies = {
       { "nvim-lua/plenary.nvim" }
     },

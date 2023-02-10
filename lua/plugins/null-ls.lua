@@ -62,6 +62,7 @@ return {
   -- Null-ls mason integration / translation
   {
     "jay-babu/mason-null-ls.nvim",
+    cmd = { "NullInstall", "NullUninstall" },
     dependencies = {
       { "neovim/nvim-lspconfig" },
       { "williamboman/mason.nvim" }

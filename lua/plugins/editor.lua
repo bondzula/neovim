@@ -139,6 +139,7 @@ return {
   -- Autopairs
   {
     "windwp/nvim-autopairs",
+    event = "InsertEnter",
     opts = {
       check_ts = true,
       disable_filetype = { "TelescopePrompt", "spectre_panel" },
@@ -176,6 +177,7 @@ return {
   -- Batter folding
   {
     "kevinhwang91/nvim-ufo",
+    event = "BufReadPost",
     dependencies = {
       "kevinhwang91/promise-async",
     },
@@ -336,6 +338,9 @@ return {
       { "nvim-treesitter/nvim-treesitter" },
       { "MunifTanjim/nui.nvim" },
     },
+    keys = {
+      { '<leader>ce', function() require('regexplainer').toggle() end, desc = "Regexp explainer toggle" }
+    },
     opts = {
       mode = "narrative",
       auto = false,
@@ -365,17 +370,11 @@ return {
     end,
   },
 
+  -- Auto list for markdown based files / buffers
   {
     "gaoDean/autolist.nvim",
-    ft = {
-      "markdown",
-      "text",
-      "tex",
-      "plaintex",
-      "octo",
-      "gitcommit",
-      "NeogitCommitMessage",
-    },
+    ft = { "markdown", "text", "tex", "plaintex", "octo", "gitcommit", "NeogitCommitMessage" },
+    event = "BufReadPost",
     config = function()
       local autolist = require("autolist")
       autolist.setup()
