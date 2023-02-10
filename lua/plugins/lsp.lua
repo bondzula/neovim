@@ -26,6 +26,8 @@ for type, icon in pairs(signs) do
 end
 
 return {
+  { "gpanders/editorconfig.nvim" },
+
   {
     "folke/neodev.nvim",
     config = function()
