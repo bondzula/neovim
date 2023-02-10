@@ -204,7 +204,7 @@ return {
     end,
   },
 
-  -- references
+  -- Word Highlighting
   {
     "echasnovski/mini.cursorword",
     event = "CursorHold",
@@ -218,24 +218,12 @@ return {
     end,
   },
 
-  -- buffer remove
+  -- Buffer remove
   {
     "echasnovski/mini.bufremove",
     keys = {
-      {
-        "<leader>bd",
-        function()
-          require("mini.bufremove").delete(0, false)
-        end,
-        desc = "Delete Buffer",
-      },
-      {
-        "<leader>bD",
-        function()
-          require("mini.bufremove").delete(0, true)
-        end,
-        desc = "Delete Buffer (Force)",
-      },
+      { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
+      { "<leader>bD", function() require("mini.bufremove").delete(0, true) end,  desc = "Delete Buffer (Force)" },
     },
   },
 
@@ -271,18 +259,18 @@ return {
     end,
   },
 
-  -- better diagnostics list and others
+  -- Better diagnostics list and others
   {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
     opts = { use_diagnostic_signs = true },
     keys = {
-      { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+      { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>",  desc = "Document Diagnostics (Trouble)" },
       { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
     },
   },
 
-  -- todo comments
+  -- Todo comments
   {
     "folke/todo-comments.nvim",
     cmd = { "TodoTrouble", "TodoTelescope" },
@@ -303,9 +291,9 @@ return {
         end,
         desc = "Previous todo comment",
       },
-      { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
+      { "<leader>xt", "<cmd>TodoTrouble<cr>",                         desc = "Todo (Trouble)" },
       { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
-      { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
+      { "<leader>st", "<cmd>TodoTelescope<cr>",                       desc = "Todo" },
     },
   },
 
@@ -368,22 +356,14 @@ return {
     opts = {
       mode = "narrative",
       auto = false,
-      filetypes = {
-        "html",
-        "js",
-        "cjs",
-        "mjs",
-        "ts",
-        "jsx",
-        "tsx",
-        "cjsx",
-        "mjsx",
-        "vue"
-      },
+      filetypes = { "html", "js", "cjs", "mjs", "ts", "jsx", "tsx", "cjsx", "mjsx", "vue" },
       debug = false,
       display = "popup",
-      mappings = {
-        toggle = "<leader>ce",
+      popup = {
+        border = {
+          padding = { 1, 2 },
+          style = 'solid',
+        },
       },
       narrative = {
         separator = "\n",
@@ -412,7 +392,7 @@ return {
       vim.api.nvim_create_autocmd("TextChanged", {
         pattern = "*",
         callback = function()
-          vim.cmd.normal({autolist.force_recalculate(nil, nil), bang = false})
+          vim.cmd.normal({ autolist.force_recalculate(nil, nil), bang = false })
         end
       })
     end,
