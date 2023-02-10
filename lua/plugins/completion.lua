@@ -40,7 +40,9 @@ return {
           }),
 
           ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
+            if require("copilot.suggestion").is_visible() then
+              require("copilot.suggestion").accept()
+            elseif cmp.visible() then
               cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
@@ -123,7 +125,21 @@ return {
   {
     "zbirenbaum/copilot.lua",
     event = "InsertEnter",
-    opts = {},
+    opts = {
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        debounce = 75,
+        keymap = {
+          accept = false,
+          accept_word = false,
+          accept_line = false,
+          next = "<M-]>",
+          prev = "<M-[>",
+          dismiss = "<C-]>",
+        },
+      },
+    },
     config = function(_, opts)
       require("copilot").setup(opts)
     end
