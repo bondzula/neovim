@@ -96,6 +96,7 @@ return {
         "json",
         "lua",
         "markdown",
+        "terraform",
         "markdown_inline",
         "python",
         "query",
