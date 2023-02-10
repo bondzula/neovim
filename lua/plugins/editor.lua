@@ -122,9 +122,6 @@ return {
           node_decremental = "<bs>",
         },
       },
-      context_commentstring = {
-        enable = true,
-      },
       autotag = {
         enable = true,
       },
