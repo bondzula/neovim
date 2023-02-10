@@ -6,7 +6,6 @@ return {
     version = false, -- wait till new 0.7.0 release to put it back on semver
     event = "BufReadPre",
     opts = {
-      -- symbol = "▏",
       symbol = "│",
       options = { try_as_border = true },
     },
@@ -18,6 +17,9 @@ return {
         end,
       })
       require("mini.indentscope").setup(opts)
+
+      -- use low-key color
+      vim.cmd('hi! link MiniIndentscopeSymbol Whitespace')
     end,
   },
 
