@@ -1,4 +1,4 @@
-local M
+local M = {}
 
 -- Define the list of LSP servers
 M.lsp_servers = {
