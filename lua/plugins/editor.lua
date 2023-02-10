@@ -368,4 +368,9 @@ return {
       })
     end,
   },
+
+  {
+    "mbbill/undotree",
+    cmd = { "UndotreeToggle" },
+  },
 }
