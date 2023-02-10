@@ -68,19 +68,29 @@ return {
         capabilities = capabilities,
         settings = {
           Lua = {
-            diagnostics = {
-              globals = { "vim", "print", "require" },
+            runtime = {
+              version = "LuaJIT",
+            },
+            workspace = {
+              -- Make the server aware of Neovim runtime files
+              library = {
+                [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+                [vim.fn.stdpath "config" .. "/lua"] = true,
+              },
             },
             format = {
               enable = true,
               defaultConfig = {
                 indent_style = "space",
                 indent_size = "2",
-                quote_style = "double",
-              },
+                max_line_length = "unset",
+              }
             },
-          },
-        },
+            telemetry = {
+              enable = false,
+            },
+          }
+        }
       })
     end,
   },
