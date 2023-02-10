@@ -118,4 +118,14 @@ return {
       })
     end
   },
+
+  -- Add github copilot
+  {
+    "zbirenbaum/copilot.lua",
+    event = "InsertEnter",
+    opts = {},
+    config = function(_, opts)
+      require("copilot").setup(opts)
+    end
+  },
 }
