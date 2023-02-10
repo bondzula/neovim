@@ -1,12 +1,6 @@
 local on_attach = require("config.lsp-config").on_attach
 local capabilities = require("config.lsp-config").capabilities
 
--- Servers with default config
-local servers = {
-  "ansiblels", "astro", "bashls", "cssls", "dockerls", "emmet_ls", "eslint", "gopls", "html", "jsonls",
-  "tsserver", "rnix", "intelephense", "rust_analyzer", "sqls", "pyright", "tailwindcss", "terraformls", "volar",
-}
-
 -- General LSP settings
 -- Diagnostics config (disable virtual text, and sort by serverity)
 vim.diagnostic.config({
