@@ -68,7 +68,7 @@ return {
       { "williamboman/mason.nvim" }
     },
     opts = {
-      automatic_installation = true,
+      automatic_installation = false,
       automatic_setup = false,
     },
     config = function(_, opts)
