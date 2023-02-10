@@ -239,14 +239,6 @@ return {
     },
   },
 
-  -- Move selection around
-  {
-    "echasnovski/mini.move",
-    config = function()
-      require("mini.move").setup()
-    end,
-  },
-
   -- Which key
   {
     "folke/which-key.nvim",
