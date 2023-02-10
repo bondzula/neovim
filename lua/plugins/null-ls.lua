@@ -34,9 +34,11 @@ return {
         sources = {
           -- Check the spelling
           null_ls.builtins.code_actions.cspell.with({
+            filetypes = { "astro", "css", "html", "javascript", "json", "jsx", "php", "svelte", "terraform", "tsx", "typescript" },
             extra_args = spellingConfig,
           }),
           null_ls.builtins.diagnostics.cspell.with({
+            filetypes = { "astro", "css", "html", "javascript", "json", "jsx", "php", "svelte", "terraform", "tsx", "typescript" },
             extra_args = spellingConfig,
             diagnostic_config = diagnosticConfig,
             diagnostics_postprocess = infoSeverity,
