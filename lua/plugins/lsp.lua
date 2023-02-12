@@ -57,7 +57,7 @@ return {
       end
 
       -- Lua
-      lspconfig.sumneko_lua.setup({
+      lspconfig.lua_ls.setup({
         on_attach = on_attach,
         capabilities = capabilities,
         settings = {
@@ -107,7 +107,7 @@ return {
       { "neovim/nvim-lspconfig" },
     },
     opts = {
-      automatic_installation = true,
+      ensure_installed = require('util.lists').lsp_servers,
     },
     config = function(_, opts)
       require("mason-lspconfig").setup(opts)
