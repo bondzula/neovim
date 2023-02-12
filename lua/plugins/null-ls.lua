@@ -75,12 +75,8 @@ return {
       { "neovim/nvim-lspconfig" },
       { "williamboman/mason.nvim" }
     },
-    opts = {
-      automatic_installation = false,
-      automatic_setup = false,
-    },
-    config = function(_, opts)
-      require("mason-null-ls").setup(opts)
+    config = function()
+      require("mason-null-ls").setup()
     end
   },
 }
