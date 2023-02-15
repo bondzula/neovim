@@ -283,30 +283,26 @@ return {
     keys = {
       { "f" }, { "F" }, { "t" }, { "T" }
     },
-    config = function()
-      require('flit').setup {
-        keys = { f = 'f', F = 'F', t = 't', T = 'T' },
-        -- A string like "nv", "nvo", "o", etc.
-        labeled_modes = "v",
-        multiline = false,
-      }
-    end
+    opts = {
+      keys = { f = 'f', F = 'F', t = 't', T = 'T' },
+      -- A string like "nv", "nvo", "o", etc.
+      labeled_modes = "v",
+      multiline = false,
+    },
   },
 
   -- Get all fency doing things without even moving
   {
     "ggandor/leap-spooky.nvim",
-    config = function()
-      require('leap-spooky').setup {
-        affixes = {
-          remote   = { window = 'r', cross_window = 'R' },
-          magnetic = { window = 'm', cross_window = 'M' },
-        },
-        -- If this option is set to true, the yanked text will automatically be pasted
-        -- at the cursor position if the unnamed register is in use.
-        paste_on_remote_yank = false,
-      }
-    end
+    opts = {
+      affixes = {
+        remote   = { window = 'r', cross_window = 'R' },
+        magnetic = { window = 'm', cross_window = 'M' },
+      },
+      -- If this option is set to true, the yanked text will automatically be pasted
+      -- at the cursor position if the unnamed register is in use.
+      paste_on_remote_yank = false,
+    },
   },
 
   -- Regex explainer
@@ -335,9 +331,6 @@ return {
         separator = "\n",
       },
     },
-    config = function(_, opts)
-      require "regexplainer".setup(opts)
-    end,
   },
 
   -- Auto list for markdown based files / buffers
