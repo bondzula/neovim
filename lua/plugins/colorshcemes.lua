@@ -1,15 +1,19 @@
 return {
-  -- catppuccin
-  -- NOTE: When making changes on this file, run `CatppuccinCompile` to compile all those options
   {
     "catppuccin/nvim",
     lazy = true,
     name = "catppuccin",
     opts = {
+      flavour = "mocha",
+      background = {
+        light = "latte",
+        dark = "mocha",
+      },
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
       },
+      transparent_background = true,
       integrations = {
         cmp = true,
         dashboard = true,
@@ -45,8 +49,5 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      require("catppuccin").setup(opts)
-    end,
   },
 }
