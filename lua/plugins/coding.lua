@@ -2,7 +2,7 @@ return {
   -- Commenting plugin
   {
     "numToStr/Comment.nvim",
-    keys = { { "gc" }, { "gb" } },
+    keys = { { "gc" }, { "gb" }, { "gc", mode = "v" }, { "gb", mode = "v" } },
     dependencies = {
       "JoosepAlviste/nvim-ts-context-commentstring",
     },
