@@ -45,7 +45,6 @@ return {
         find_files = {
           find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
           theme = "dropdown",
-          winblend = 10,
           width = 0.5,
           prompt = " ",
           results_height = 18,
