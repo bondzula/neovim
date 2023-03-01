@@ -1,6 +1,5 @@
+-- Description: Completion plugins
 return {
-
-  -- completion
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
@@ -108,40 +107,15 @@ return {
     end,
   },
 
+  -- GitHub completion
   {
     "petertriho/cmp-git",
     ft = { "gitcommit", "octo", "NeogitCommitMessage" },
     dependencies = {
       { "nvim-lua/plenary.nvim" }
     },
-    config = function()
-      require("cmp_git").setup({
-        filetypes = { "gitcommit", "octo", "NeogitCommitMessage" },
-      })
-    end
-  },
-
-  -- Add github copilot
-  {
-    "zbirenbaum/copilot.lua",
-    event = "InsertEnter",
     opts = {
-      suggestion = {
-        enabled = true,
-        auto_trigger = true,
-        debounce = 75,
-        keymap = {
-          accept = false,
-          accept_word = false,
-          accept_line = false,
-          next = "<M-]>",
-          prev = "<M-[>",
-          dismiss = "<C-]>",
-        },
-      },
-    },
-    config = function(_, opts)
-      require("copilot").setup(opts)
-    end
+      filetypes = { "gitcommit", "octo", "NeogitCommitMessage" },
+    }
   },
 }

@@ -5,14 +5,6 @@ return {
     name = "catppuccin",
     opts = {
       flavour = "mocha",
-      background = {
-        light = "latte",
-        dark = "mocha",
-      },
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-      },
       transparent_background = true,
       integrations = {
         cmp = true,

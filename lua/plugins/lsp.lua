@@ -20,16 +20,6 @@ for type, icon in pairs(signs) do
 end
 
 return {
-  { "gpanders/editorconfig.nvim" },
-
-  {
-    "folke/neodev.nvim",
-    ft = { "lua" },
-    config = function()
-      require("neodev").setup()
-    end
-  },
-
   {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
@@ -96,9 +86,6 @@ return {
       { "neovim/nvim-lspconfig" },
     },
     opts = {},
-    config = function(_, opts)
-      require("mason").setup(opts)
-    end
   },
 
   {
@@ -109,31 +96,5 @@ return {
     opts = {
       ensure_installed = require('util.lists').lsp_servers,
     },
-    config = function(_, opts)
-      require("mason-lspconfig").setup(opts)
-    end
-  },
-
-  -- Nicer LSP UI
-  {
-    "glepnir/lspsaga.nvim",
-    dependencies = {
-      { "neovim/nvim-lspconfig" },
-    },
-    opts = {
-      symbol_in_winbar = {
-        enable = false,
-      },
-      lightbulb = {
-        enable = false,
-      },
-      ui = {
-        title = true,
-        border = "rounded",
-      },
-    },
-    config = function(_, opts)
-      require("lspsaga").setup(opts)
-    end
   },
 }
