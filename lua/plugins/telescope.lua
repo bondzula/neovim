@@ -9,13 +9,13 @@ return {
     },
     keys = {
       { "<C-p>",      "<cmd>Telescope find_files<cr>",                    desc = "Find Files (root dir)" },
-      { "<C-P>",      "<cmd>Telescope commands<cr>",                      desc = "Commands" },
       { "<leader>,",  "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
       { "<leader>/",  "<cmd>Telescope live_grep<cr>",                     desc = "Diagnostics" },
       { "<leader>bb", "<cmd>Telescope buffers<cr>",                       desc = "Buffers" },
       -- search
       { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>",     desc = "Buffer" },
       { "<leader>sc", "<cmd>Telescope command_history<cr>",               desc = "Command History" },
+      { "<leader>sC", "<cmd>Telescope commands<cr>",                      desc = "Commands" },
       { "<leader>sd", "<cmd>Telescope diagnostics<cr>",                   desc = "Diagnostics" },
       { "<leader>sg", "<cmd>Telescope live_grep<cr>",                     desc = "Diagnostics" },
       { "<leader>sh", "<cmd>Telescope help_tags<cr>",                     desc = "Help Pages" },
