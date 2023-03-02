@@ -68,7 +68,6 @@ return {
           { name = "nvim_lsp_signature_help" },
           { name = "git" },
           { name = "path" },
-          { name = "buffer" },
           { name = "luasnip" },
           { name = "nvim_lua" },
         },
