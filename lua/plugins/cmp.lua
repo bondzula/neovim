@@ -33,6 +33,8 @@ return {
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           -- Close completion menu
           ["<C-e>"] = cmp.mapping.abort(),
+          -- Manually invoke completion
+          ["<C-Space>"] = cmp.mapping.complete(),
           -- Confirm Completion
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
         },
