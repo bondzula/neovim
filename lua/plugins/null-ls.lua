@@ -1,11 +1,12 @@
 return {
   {
     "jose-elias-alvarez/null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       { "neovim/nvim-lspconfig" },
     },
     config = function()
-      local null_ls = require("null-ls")
+      local nls = require("null-ls")
 
       -- -- Get the dictionary
       local spellingConfig = { "--config", vim.fn.expand("~/.config/nvim/cspell.json") }
@@ -28,40 +29,64 @@ return {
       local ltrsFieTypes = { "latex", "tex", "bib", "markdown", "gitcommit", "text", "NeogitCommitMessage", "octo" }
 
       -- Th is a spelling test for cspell
-      null_ls.setup({
+      nls.setup({
         on_attach = require("config.lsp-config").on_attach,
         capabilities = require("config.lsp-config").capabilities,
         sources = {
           -- Check the spelling
-          null_ls.builtins.code_actions.cspell.with({
-            filetypes = { "astro", "css", "html", "javascript", "json", "jsx", "php", "svelte", "terraform", "tsx", "typescript" },
+          nls.builtins.code_actions.cspell.with({
+            filetypes = {
+              "astro",
+              "css",
+              "html",
+              "javascript",
+              "json",
+              "jsx",
+              "php",
+              "svelte",
+              "terraform",
+              "tsx",
+              "typescript",
+            },
             extra_args = spellingConfig,
           }),
-          null_ls.builtins.diagnostics.cspell.with({
-            filetypes = { "astro", "css", "html", "javascript", "json", "jsx", "php", "svelte", "terraform", "tsx", "typescript" },
+          nls.builtins.diagnostics.cspell.with({
+            filetypes = {
+              "astro",
+              "css",
+              "html",
+              "javascript",
+              "json",
+              "jsx",
+              "php",
+              "svelte",
+              "terraform",
+              "tsx",
+              "typescript",
+            },
             extra_args = spellingConfig,
             diagnostic_config = diagnosticConfig,
             diagnostics_postprocess = infoSeverity,
           }),
 
           -- Grammar checker
-          null_ls.builtins.code_actions.ltrs.with({
+          nls.builtins.code_actions.ltrs.with({
             filetypes = ltrsFieTypes,
           }),
-          null_ls.builtins.diagnostics.ltrs.with({
+          nls.builtins.diagnostics.ltrs.with({
             filetypes = ltrsFieTypes,
             diagnostic_config = diagnosticConfig,
             diagnostics_postprocess = infoSeverity,
           }),
 
           -- PHP
-          null_ls.builtins.diagnostics.phpstan,
+          nls.builtins.diagnostics.phpstan,
 
           -- Nix
-          null_ls.builtins.formatting.nixfmt, -- Opinionated formatter
-          null_ls.builtins.diagnostics.deadnix,
-          null_ls.builtins.diagnostics.statix,
-          null_ls.builtins.code_actions.statix,
+          nls.builtins.formatting.nixfmt, -- Opinionated formatter
+          nls.builtins.diagnostics.deadnix,
+          nls.builtins.diagnostics.statix,
+          nls.builtins.code_actions.statix,
         },
       })
     end
