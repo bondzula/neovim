@@ -2,33 +2,39 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
-    config = function()
-      local gs = require("gitsigns")
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      signs = {
+        add = { text = "▎" },
+        change = { text = "▎" },
+        delete = { text = "" },
+        topdelete = { text = "" },
+        changedelete = { text = "▎" },
+        untracked = { text = "▎" },
+      },
+      on_attach = function(buffer)
+        local gs = package.loaded.gitsigns
 
-      gs.setup({
-        on_attach = function(bufNum)
-          local map = vim.keymap.set
-          -- Navigation
-          map("n", "]c", gs.next_hunk, { desc = "Next Hunk", buffer = bufNum })
-          map("n", "[c", gs.prev_hunk, { desc = "Previous Hunk", buffer = bufNum })
+        local function map(mode, l, r, desc)
+          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+        end
 
-          -- Actions
-          map("n", "<leader>gs", gs.stage_hunk, { desc = "Stage Hunk", buffer = bufNum })
-          map("n", "<leader>gr", gs.reset_hunk, { desc = "Reset Hunk", buffer = bufNum })
-          map("n", "<leader>gS", gs.stage_buffer, { desc = "Stage Buffer", buffer = bufNum })
-          map("n", "<leader>gu", gs.undo_stage_hunk, { desc = "Reset Staged Hunk", buffer = bufNum })
-          map("n", "<leader>gR", gs.reset_buffer, { desc = "Reset Staged Buffer", buffer = bufNum })
-          map("n", "<leader>gk", gs.preview_hunk, { desc = "Preview Hunk", buffer = bufNum })
-          map("n", "<leader>gb", gs.toggle_current_line_blame, { desc = "Toggle line blame", buffer = bufNum })
+        -- Navigation
+        map("n", "]c", gs.next_hunk, "Next Hunk")
+        map("n", "[c", gs.prev_hunk, "Prev Hunk")
 
-          -- Text object
-          map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+        map({ "n", "v" }, "<leader>gs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
+        map({ "n", "v" }, "<leader>gr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
+        map("n", "<leader>gS", gs.stage_buffer, "Stage Buffer")
+        map("n", "<leader>gu", gs.undo_stage_hunk, "Undo Stage Hunk")
+        map("n", "<leader>gR", gs.reset_buffer, "Reset Buffer")
+        map("n", "<leader>gk", gs.preview_hunk, "Preview Hunk")
+        map("n", "<leader>gd", gs.diffthis, "Diff This")
+        map("n", "<leader>gb", gs.toggle_current_line_blame, "Toggle line blame")
 
-          -- Visual mode staging
-          map("v", "<leader>gs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
-          map("v", "<leader>gr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
-        end,
-      })
-    end,
+        -- Text object
+        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+      end,
+    },
   },
 }
