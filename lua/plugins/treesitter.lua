@@ -6,7 +6,7 @@ return {
       { "windwp/nvim-ts-autotag" },
     },
     build = ":TSUpdate",
-    event = "BufReadPost",
+    event = { "BufReadPost", "BufNewFile" },
     opts = {
       highlight = {
         enable = true,
