@@ -22,9 +22,9 @@ end
 return {
   {
     "neovim/nvim-lspconfig",
-    event = "BufReadPre",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      { "folke/neodev.nvim" },
+      { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
     },
     config = function()
       local lspconfig = require("lspconfig")
@@ -58,8 +58,8 @@ return {
             workspace = {
               -- Make the server aware of Neovim runtime files
               library = {
-                [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-                [vim.fn.stdpath "config" .. "/lua"] = true,
+                  [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+                  [vim.fn.stdpath "config" .. "/lua"] = true,
               },
             },
             format = {
