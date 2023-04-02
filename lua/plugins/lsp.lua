@@ -78,4 +78,23 @@ return {
       })
     end,
   },
+
+  {
+    "williamboman/mason.nvim",
+    cmd = "Mason",
+    dependencies = {
+      { "neovim/nvim-lspconfig" },
+    },
+    opts = {},
+  },
+
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = {
+      { "neovim/nvim-lspconfig" },
+    },
+    opts = {
+      ensure_installed = require('util.lists').lsp_servers,
+    },
+  },
 }
