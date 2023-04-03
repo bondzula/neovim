@@ -37,7 +37,6 @@ M.treesitter_parsers = {
   "gitignore",
   "go",
   "hcl",
-  "help",
   "html",
   "javascript",
   "json",
