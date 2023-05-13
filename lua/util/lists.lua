@@ -14,7 +14,7 @@ M.lsp_servers = {
   "intelephense",
   "jsonls",
   "marksman",
-  "nil_ls",
+  -- "nil_ls",
   "pyright",
   "rust_analyzer",
   "sqlls",
@@ -24,6 +24,7 @@ M.lsp_servers = {
   "terraformls",
   "tsserver",
   "volar",
+  "pylsp",
 }
 
 -- Define a list of TreeSitter parsers
