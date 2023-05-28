@@ -5,10 +5,10 @@ return {
     name = "catppuccin",
     opts = {
       flavour = "mocha",
-      transparent_background = true,
+      transparent_background = false,
       integrations = {
         cmp = true,
-        dashboard = true,
+        dashboard = false,
         gitsigns = true,
         leap = true,
         lsp_saga = true,
@@ -42,5 +42,11 @@ return {
         which_key = false,
       },
     },
+    config = function(opts)
+      require("catppuccin").setup(opts)
+
+      -- Set the theme
+      vim.cmd.colorscheme("catppuccin")
+    end
   },
 }

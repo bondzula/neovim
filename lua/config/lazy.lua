@@ -43,6 +43,3 @@ require("lazy").setup("plugins", {
     },
   },
 })
-
--- Setup the colorscheme after the plugin setup
-vim.cmd.colorscheme("catppuccin")
