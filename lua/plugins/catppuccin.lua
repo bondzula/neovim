@@ -42,11 +42,5 @@ return {
         which_key = false,
       },
     },
-    config = function(opts)
-      require("catppuccin").setup(opts)
-
-      -- Set the theme
-      vim.cmd.colorscheme("catppuccin")
-    end
   },
 }
