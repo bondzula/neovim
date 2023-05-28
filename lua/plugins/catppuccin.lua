@@ -6,6 +6,11 @@ return {
     opts = {
       flavour = "mocha",
       transparent_background = false,
+      dim_inactive = {
+        enabled = true,
+        shade = "dark",
+        percentage = 0.5,
+      },
       integrations = {
         cmp = true,
         dashboard = false,
