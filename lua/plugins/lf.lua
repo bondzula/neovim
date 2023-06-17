@@ -22,8 +22,8 @@ return {
       winblend = 0, -- psuedotransparency level
       highlights = { NormalFloat = { guibg = "NONE" } },
       border = "curved", -- border kind: single double shadow curved
-      height = 35, -- height of the *floating* window
-      width = 140, -- width of the *floating* window
+      height = math.floor(vim.o.lines * 0.8), -- height of the *floating* window
+      width = math.floor(vim.o.columns * 0.85), -- width of the *floating* window
       escape_quit = true, -- map escape to the quit command (so it doesn't go into a meta normal mode)
       focus_on_open = false, -- focus the current file when opening Lf (experimental)
     },
