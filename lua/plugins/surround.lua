@@ -1,8 +1,9 @@
--- Surrounding plugin
--- TODO: Visual mode keybinds
 return {
   {
     "kylechui/nvim-surround",
-    keys = { { "ds" }, { "cs" }, { "ys" } },
+    event = "VeryLazy",
+    config = function(_, opts)
+      require("nvim-surround").setup(opts)
+    end
   },
 }
