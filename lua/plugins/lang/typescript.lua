@@ -27,13 +27,15 @@ return {
     opts = function(_, opts)
       opts.sources = vim.list_extend(opts.sources, {
         require("null-ls").builtins.formatting.prettierd,
+        require("null-ls").builtins.diagnostics.eslint_d,
+        require("null-ls").builtins.code_actions.eslint_d,
       })
     end,
   },
 
   {
     "pmizio/typescript-tools.nvim",
-    event = "LspAttach",
+    event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {
       settings = {
