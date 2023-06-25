@@ -1,7 +1,2 @@
--- Main editor options
-require("config.options")
-require("config.autocmds")
-require("config.keymaps")
-
--- Plugins config
+-- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")

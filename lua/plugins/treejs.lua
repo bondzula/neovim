@@ -14,7 +14,7 @@ return {
     check_syntax_error = true,
     max_join_length = 120,
     -- hold|start|end:
-    cursor_behavior = 'hold',
+    cursor_behavior = "hold",
     dot_repeat = true,
-  }
+  },
 }

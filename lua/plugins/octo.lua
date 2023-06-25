@@ -1,12 +1,13 @@
+-- TODO: create batter key bindings
 -- Octo.nvim - GitHub CLI for Neovim
 return {
   {
     "pwntester/octo.nvim",
     cmd = "Octo",
     keys = {
-      { "<leader>is",  "<cmd>Octo issue list<cr>",   desc = "Issue Search" },
-      { "<leader>in",  "<cmd>Octo issue create<cr>", desc = "New Issue" },
-      { "<leader>gpl", "<cmd>Octo pr list<cr>",      desc = "List Pull Requests" },
+      { "<leader>is", "<cmd>Octo issue list<cr>", desc = "Issue Search" },
+      { "<leader>in", "<cmd>Octo issue create<cr>", desc = "New Issue" },
+      { "<leader>gpl", "<cmd>Octo pr list<cr>", desc = "List Pull Requests" },
     },
     opts = {
       mappings = {

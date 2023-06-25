@@ -4,9 +4,9 @@ return {
     "stevearc/overseer.nvim",
     keys = {
       { "<leader>tt", "<cmd>OverseerToggle[!] right<cr>", desc = "Toggle Task View" },
-      { "<leader>tr", "<cmd>OverseerRun<cr>",             desc = "Run a task" },
-      { "<leader>tR", "<cmd>OverseerRunCmd<cr>",          desc = "Run a custom task" },
-      { "<leader>ta", "<cmd>OverseerTaskAction<cr>",      desc = "Task Actions" },
+      { "<leader>tr", "<cmd>OverseerRun<cr>", desc = "Run a task" },
+      { "<leader>tR", "<cmd>OverseerRunCmd<cr>", desc = "Run a custom task" },
+      { "<leader>ta", "<cmd>OverseerTaskAction<cr>", desc = "Task Actions" },
     },
     config = function()
       require("overseer").setup()

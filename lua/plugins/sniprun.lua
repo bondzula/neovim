@@ -1,4 +1,5 @@
 -- Run code snippets from anywhere
+-- TODO: improve and document this
 return {
   {
     "michaelb/sniprun",
@@ -7,6 +8,6 @@ return {
     opts = {
       selected_interpreters = { "JS_TS_deno" },
       repl_enable = { "JS_TS_deno" },
-    }
+    },
   },
 }
