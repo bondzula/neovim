@@ -17,6 +17,7 @@ require("lazy").setup({
 
     -- Import language modules
     { import = "plugins.lang.typescript" },
+    { import = "plugins.lang.tailwind" },
 
     -- import/override with your plugins
     { import = "plugins" },
