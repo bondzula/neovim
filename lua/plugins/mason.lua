@@ -1,8 +1,8 @@
 return {
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
+    opts = function(_, opts)
+      opts.ensure_installed = vim.list_extend(opts.ensure_installed or {}, {
         "ansible-language-server",
         "astro-language-server",
         "bash-language-server",
@@ -24,7 +24,7 @@ return {
         "tailwindcss-language-server",
         "terraform-ls",
         "vue-language-server",
-      },
-    },
+      })
+    end,
   },
 }
