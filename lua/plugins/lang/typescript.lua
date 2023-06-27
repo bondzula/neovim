@@ -34,30 +34,47 @@ return {
   },
 
   {
-    "pmizio/typescript-tools.nvim",
-    event = "VeryLazy",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    "neovim/nvim-lspconfig",
+    dependencies = { "jose-elias-alvarez/typescript.nvim" },
     opts = {
-      settings = {
-        -- spawn additional tsserver instance to calculate diagnostics on it
-        separate_diagnostic_server = true,
-        -- "change"|"insert_leave" determine when the client asks the server about diagnostic
-        publish_diagnostic_on = "insert_leave",
-        -- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
-        -- (see 💅 `styled-components` support section)
-        tsserver_plugins = {},
-        -- described below
-        tsserver_format_options = {
-          includeInlayParameterNameHints = "all",
-          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayVariableTypeHints = true,
-          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayEnumMemberValueHints = true,
+      -- make sure mason installs the server
+      servers = {
+        ---@type lspconfig.options.tsserver
+        tsserver = {
+          settings = {
+            typescript = {
+              format = {
+                indentSize = vim.o.shiftwidth,
+                convertTabsToSpaces = vim.o.expandtab,
+                tabSize = vim.o.tabstop,
+              },
+            },
+            javascript = {
+              format = {
+                indentSize = vim.o.shiftwidth,
+                convertTabsToSpaces = vim.o.expandtab,
+                tabSize = vim.o.tabstop,
+              },
+            },
+            completions = {
+              completeFunctionCalls = true,
+            },
+          },
         },
-        tsserver_file_preferences = {},
+      },
+      setup = {
+        tsserver = function(_, opts)
+          require("lazyvim.util").on_attach(function(client, buffer)
+            if client.name == "tsserver" then
+              -- stylua: ignore
+              vim.keymap.set("n", "<leader>co", "<cmd>TypescriptOrganizeImports<CR>", { buffer = buffer, desc = "Organize Imports" })
+              -- stylua: ignore
+              vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = buffer })
+            end
+          end)
+          require("typescript").setup({ server = opts })
+          return true
+        end,
       },
     },
   },
