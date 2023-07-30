@@ -14,7 +14,7 @@ return {
         "intelephense",
         "lua-language-server",
         "marksman",
-        -- "nil",
+        "nil",
         "prisma-language-server",
         "pyright",
         "rust-analyzer",
