@@ -13,6 +13,7 @@ return {
         "go",
         "hcl",
         "kdl",
+        "make",
         "nix",
         "php",
         "phpdoc",
