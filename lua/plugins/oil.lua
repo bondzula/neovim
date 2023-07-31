@@ -2,8 +2,8 @@ return {
   {
     "stevearc/oil.nvim",
     keys = {
-      { "<leader>fL", "<cmd>lua require('oil').open()<cr>", desc = "File Browser" },
-      { "<leader>fl", "<cmd>lua require('oil').toggle_float()<cr>", desc = "File Browser (Floating)" },
+      { "<leader>fl", "<cmd>lua require('oil').open()<cr>", desc = "File Browser" },
+      { "<leader>fL", "<cmd>lua require('oil').toggle_float()<cr>", desc = "File Browser (Floating)" },
     },
     opts = {
       keymaps = {
