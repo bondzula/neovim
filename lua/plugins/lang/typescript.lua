@@ -23,17 +23,6 @@ return {
   },
 
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    opts = function(_, opts)
-      opts.sources = vim.list_extend(opts.sources, {
-        require("null-ls").builtins.formatting.prettierd,
-        require("null-ls").builtins.diagnostics.eslint_d,
-        require("null-ls").builtins.code_actions.eslint_d,
-      })
-    end,
-  },
-
-  {
     "neovim/nvim-lspconfig",
     dependencies = { "jose-elias-alvarez/typescript.nvim" },
     opts = {
