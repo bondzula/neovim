@@ -75,15 +75,15 @@ return {
       }
 
       require('lint').linters_by_ft = {
-        javascript = { "eslintd", },
+        javascript = { "eslint_d", },
         json = { "jsonlint", },
         markdown = { 'ltrs', },
         go = { "cspell", },
         nix = { "statix", "deadnix", },
         php = { "phpstan", },
         tsx = { "eslintd", },
-        typescript = { "eslintd", },
-        typescriptreact = { "eslintd", },
+        typescript = { "eslint_d", },
+        typescriptreact = { "eslint_d", },
       }
 
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
